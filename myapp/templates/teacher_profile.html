@@ -1,0 +1,41 @@
+{% extends 'nav_teacher.html' %}
+
+{% block content %}
+<style>
+    h3{
+        background-color:darkgreen;
+    }
+</style>
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header  text-white text-center">
+            <h3>Teacher Profile</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Profile Details -->
+                <div class="col-md-8">
+                    <h5 class="mb-4"><strong>Personal Information</strong></h5>
+                    <p><strong>Name:</strong> {{ user.teacher.first_name }} {{ user.teacher.last_name }}</p>
+                    <p><strong>Username:</strong> {{ user.teacher.username }}</p>
+                    <p><strong>Age:</strong> {{ user.teacher_age }}</p>
+                    <p><strong>Department:</strong> {{ user.course.course_name }}</p>
+                    <p><strong>Gender:</strong> {{ user.teacher_gender }}</p>
+                    <p><strong>Place:</strong> {{ user.teacher_address }}</p>
+                    <p><strong>Phone:</strong> {{ user.teacher_phone }}</p>
+                    <p><strong>Email:</strong> {{ user.teacher.email }}</p>
+                </div>
+                <!-- Profile Image -->
+                <div class="col-md-4 text-center">
+                    <h5 class="mb-4"><strong>Profile Picture</strong></h5>
+                    <img src="{{ user.Image.url }}" class="img-fluid img-thumbnail rounded-circle mb-3" alt="Profile Picture" style="width: 150px; height: 150px;">
+                    <div>
+                        <a href="{% url 'edit_teacher' user.teacher.id %}" class="btn btn-success btn-block mt-2">Edit Profile</a>
+                        <a href="{% url 'change_password' %}" class="btn btn-danger btn-block mt-2">Reset Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

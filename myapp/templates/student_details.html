@@ -1,0 +1,53 @@
+{% extends 'nav_admin.html' %}
+{% block content %}
+
+
+
+
+<div class="container">
+
+    <!-- for alter messages! -->
+    {% for m in messages %}
+    <div class="alert alert-primary" role="alert">
+        {{m}}
+    </div>
+    {% endfor %}
+
+    <h1>Student Details</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Course</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in student %}
+                <tr>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.stuent_age }}</td>
+                    <td>{{ student.student_address }}</td>
+                    <td>{{ student.stuent_phone }}</td>
+                    <td>{{ student.student_email }}</td>
+                    <td>{{ student.course.course_name }}</td>
+                    <td><img src="{{ student.Image.url }}" alt="{{ student.student_name }}" class="img-fluid"
+                            width="100" height="100"></td>
+                    <td>
+                        <a href="{% url 'Edit_student_page' student.id %}"><button
+                                class="btn btn-warning btn-sm">Edit</button></a>
+                        <a href=""><button class="btn btn-danger btn-sm">Remove</button></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

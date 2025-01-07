@@ -1,0 +1,47 @@
+{% extends 'nav_admin.html' %}
+{% block content %}
+
+
+<div class="col-md-12 mt-5">
+    <div class="table-responsive mt-3">
+        <table class="table  table-striped table-hover text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            {% for u in user %}
+            <tr>
+                <td>{{u.id}}</td>
+                <td>{{u.teacher.first_name}} {{u.teacher.last_name}}</td>
+                <td>{{u.course.course_name}}</td>
+                <td>{{u.teacher_gender}}</td>
+                <td>{{u.teacher_address}}</td>
+                <td>{{u.teacher_phone}}</td>
+                <td>{{u.teacher.email}}</td>
+                <td>{{u.teacher_age}}</td>
+                <td>
+                    <img src="{{u.Image.url}}" width="100px" class="img-fluid" alt="">
+                </td>
+                <td>
+                    <a href="{% url 'Delete_teacher' u.teacher.id %}"><button class="btn btn-danger btn-sm">Remove</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        
+    </div>
+</div>
+
+
+{% endblock %}
